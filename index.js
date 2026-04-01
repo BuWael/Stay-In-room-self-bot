@@ -2,8 +2,7 @@ const { Client: BotClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, Te
 const { Client: SelfClient } = require('discord.js-selfbot-v13');
 const { joinVoiceChannel } = require('@discordjs/voice');
 
-// --- INSERT YOUR OFFICIAL BOT TOKEN HERE ---
-const BOT_TOKEN = "YOUR_OFFICIAL_BOT_TOKEN_HERE".trim(); 
+const BOT_TOKEN = "DISCORD_TOKEN".trim(); 
 
 const bot = new BotClient({ intents: [GatewayIntentBits.Guilds] });
 
@@ -59,7 +58,7 @@ function startSelfBot(token, gId, vId, interaction) {
 
             if (!guild || !channel) return interaction.editReply("Error: Invalid IDs.");
 
-            // Setting the Stream Status
+
             selfBot.user.setActivity("By Bu WAEL", {
                 type: "STREAMING",
                 url: "https://www.twitch.tv/discord" 
@@ -78,7 +77,7 @@ function startSelfBot(token, gId, vId, interaction) {
             connect();
             await interaction.editReply(`Done. ${channel.name}`);
             
-            // Strong Keep-Alive System (Checks every 15 seconds)
+
             setInterval(() => {
                 if (!guild.members.me.voice.channelId) {
                     connect();
@@ -96,7 +95,7 @@ function startSelfBot(token, gId, vId, interaction) {
 
 bot.login(BOT_TOKEN);
 
-// Simple Web Server for Keep-Alive (UptimeRobot/Railway/Render)
+
 const http = require('http');
 http.createServer((req, res) => {
     res.write("System Online");
