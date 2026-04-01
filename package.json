@@ -1,7 +1,6 @@
 {
-  "name": "bu-wael-voice-bot",
+  "name": "bu-wael-bot",
   "version": "1.0.0",
-  "description": "AfterLife Voice System by Bu WAEL",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
