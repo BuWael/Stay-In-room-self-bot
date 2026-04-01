@@ -3,7 +3,7 @@ const { Client: SelfClient } = require('discord.js-selfbot-v13');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const http = require('http');
 
-const BOT_TOKEN = "DISCORD_TOKEN".trim(); 
+const BOT_TOKEN = process.env.DISCORD_TOKEN; 
 
 const bot = new BotClient({ intents: [GatewayIntentBits.Guilds] });
 
