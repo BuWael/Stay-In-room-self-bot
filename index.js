@@ -1,6 +1,7 @@
 const { Client: BotClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, Events } = require('discord.js');
 const { Client: SelfClient } = require('discord.js-selfbot-v13');
 const { joinVoiceChannel } = require('@discordjs/voice');
+const http = require('http');
 
 const BOT_TOKEN = "DISCORD_TOKEN".trim(); 
 
@@ -58,7 +59,6 @@ function startSelfBot(token, gId, vId, interaction) {
 
             if (!guild || !channel) return interaction.editReply("Error: Invalid IDs.");
 
-
             selfBot.user.setActivity("By Bu WAEL", {
                 type: "STREAMING",
                 url: "https://www.twitch.tv/discord" 
@@ -77,11 +77,9 @@ function startSelfBot(token, gId, vId, interaction) {
             connect();
             await interaction.editReply(`Done. ${channel.name}`);
             
-
             setInterval(() => {
                 if (!guild.members.me.voice.channelId) {
                     connect();
-                    console.log(`Re-connected to ${channel.name}`);
                 }
             }, 15000);
 
@@ -93,11 +91,10 @@ function startSelfBot(token, gId, vId, interaction) {
     selfBot.login(token).catch(() => interaction.editReply("Invalid Token."));
 }
 
-bot.login(BOT_TOKEN);
-
-
-const http = require('http');
+const PORT = process.env.PORT || 8080;
 http.createServer((req, res) => {
-    res.write("System Online");
+    res.write("Online");
     res.end();
-}).listen(8080);
+}).listen(PORT);
+
+bot.login(BOT_TOKEN).catch(() => {});
