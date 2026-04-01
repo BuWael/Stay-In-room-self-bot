@@ -9,9 +9,15 @@ const bot = new BotClient({ intents: [GatewayIntentBits.Guilds] });
 
 bot.on('ready', () => {
     console.log(`Manager Online: ${bot.user.tag}`);
+    
+    bot.user.setActivity("By Bu WAEL", {
+        type: 3, 
+        url: "https://www.twitch.tv/discord" 
+    });
+
     bot.application.commands.create({
         name: 'start',
-        description: 'Start AfterLife Voice System',
+        description: 'Start',
     });
 });
 
@@ -58,11 +64,6 @@ function startSelfBot(token, gId, vId, interaction) {
             const channel = guild?.channels.cache.get(vId);
 
             if (!guild || !channel) return interaction.editReply("Error: Invalid IDs.");
-
-            selfBot.user.setActivity("By Bu WAEL", {
-                type: "STREAMING",
-                url: "https://www.twitch.tv/discord" 
-            });
 
             const connect = () => {
                 joinVoiceChannel({
